@@ -22,8 +22,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      - name: Prepare envionment
+        run: |
+          git clone https://github.com/SebaUbuntu/AIK-Linux-mirror
 
-      # Runs a set of commands using the runners shell
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+ 
       - name: Get image
         run: wget ${{ github.event.inputs.IMAGE_URL }} legacy/out.img
 
