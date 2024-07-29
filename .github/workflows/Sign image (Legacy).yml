@@ -26,7 +26,7 @@ jobs:
         run: git clone https://github.com/SebaUbuntu/AIK-Linux-mirror aik
  
       - name: Get image
-        run: wget ${{ github.event.inputs.IMAGE_URL }} -P aik/1.img
+        run: wget ${{ github.event.inputs.IMAGE_URL }} -O ./aik/1.img
 
       - name: Remove invalid content in your image
         run: |
