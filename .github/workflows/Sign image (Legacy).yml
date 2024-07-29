@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Sign image(Legacy)
+name: Sign image (Legacy)
 
 # Controls when the workflow will run
 on:
@@ -23,11 +23,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Get image
+        run: wget ${{ github.event.inputs.IMAGE_URL }} legacy/out.img
+
+      - name: Sign the image
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          ./imgheaderinsert out.img 0
+          ./sprd_sign out-sign.img config
+        working-directory: legacy
+    
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: legacy/out-sign.img
+          name: Signed image-${{ github.run_id }}
+          tag_name: ${{ github.run_id }}
+          body: |
+            Legacy method (sprd_sign)
+            URL: ${{ github.event.inputs.IMAGE_URL }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
