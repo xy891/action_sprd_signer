@@ -22,16 +22,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: Prepare envionment
-        run: |
-          git clone https://github.com/SebaUbuntu/AIK-Linux-mirror aik
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      - name: Get AIK
+        run: git clone https://github.com/SebaUbuntu/AIK-Linux-mirror aik
  
       - name: Get image
-        run: wget ${{ github.event.inputs.IMAGE_URL }} legacy/out.img
+        run: wget ${{ github.event.inputs.IMAGE_URL }} -P aik/1.img
 
+      - name: Remove invalid content in your image
+        run: |
+          ./unpackimg.sh 1.img
+          ./repackimg.sh
+          cp image-new.img ../legacy/out.img
+        working-directory: aik
+        
       - name: Sign the image
         run: |
           ./imgheaderinsert out.img 0
