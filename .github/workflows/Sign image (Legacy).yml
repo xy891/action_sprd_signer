@@ -32,7 +32,7 @@ jobs:
         run: |
           ./unpackimg.sh 1.img
           ./repackimg.sh
-          cp image-new.img ../legacy/out.img
+          cp -v image-new.img ../legacy/out.img
         working-directory: aik
         
       - name: Sign the image
@@ -40,15 +40,8 @@ jobs:
           ./imgheaderinsert out.img 0
           ./sprd_sign out-sign.img config
         working-directory: legacy
-    
-      - name: Upload to Release
-        uses: softprops/action-gh-release@v2
+
+      - uses: actions/upload-artifact@v4
         with:
-          files: legacy/out-sign.img
-          name: Signed image-${{ github.run_id }}
-          tag_name: ${{ github.run_id }}
-          body: |
-            Legacy method (sprd_sign)
-            URL: ${{ github.event.inputs.IMAGE_URL }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: TWRP Image for MiKids4
+          path: 'legacy/out-sign.img'
