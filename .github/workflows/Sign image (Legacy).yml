@@ -41,7 +41,7 @@ jobs:
           ./sprd_sign out-sign.img config
         working-directory: legacy
 
-      - run: Upload to Artifact
+      - name: Upload to Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Signed image
