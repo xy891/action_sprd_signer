@@ -41,7 +41,8 @@ jobs:
           ./sprd_sign out-sign.img config
         working-directory: legacy
 
-      - uses: actions/upload-artifact@v4
+      - run: Upload to Artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: TWRP Image for MiKids4
+          name: Signed image
           path: 'legacy/out-sign.img'
