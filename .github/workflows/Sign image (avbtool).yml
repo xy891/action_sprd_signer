@@ -25,11 +25,13 @@ jobs:
       - name: Prepare envionment
         run: |
           git clone https://github.com/SebaUbuntu/AIK-Linux-mirror aik
-          sudo apt install android-tools -y
+          sudo apt install python3 -y
 
       - name: Debug
         uses: mxschmitt/action-tmate@v3
-        if: ${{ failure() }}
+
+      - name: Force stop
+        run: fuckyou
 
       - name: Get image
         run: wget ${{ github.event.inputs.IMAGE_URL }} -O ./aik/1.img
