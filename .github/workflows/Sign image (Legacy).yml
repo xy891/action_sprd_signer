@@ -30,6 +30,7 @@ jobs:
 
       - name: Remove invalid content in your image
         run: |
+          ../legacy/header.sh 1.img
           ./unpackimg.sh 1.img
           ./repackimg.sh
           cp -v image-new.img ../legacy/out.img
