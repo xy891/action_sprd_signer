@@ -7,10 +7,18 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-      IMAGE_URL:
-        description: 'URL of the image you want to sign'
+      BOOT_URL:
+        description: 'URL of the boot image you want to sign'
         required: true
         default: ''
+      VBM_URL:
+        description: 'URL of the vbmeta image in your device'
+        required: true
+        default: ''
+      CUST:
+        description: 'Which partition you want to sign? (boot/recovery)'
+        required: true
+        default: 'boot'
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -34,10 +42,13 @@ jobs:
         run: fuckyou
 
       - name: Get image
-        run: wget ${{ github.event.inputs.IMAGE_URL }} -O ./aik/1.img
-
+        run: | 
+          wget ${{ github.event.inputs.BOOT_URL }} -O ./aik/boot.img
+          wget ${{ github.event.inputs.VBM_URL }} -O ./aik/vbmeta.img
+          
       - name: Remove invalid content in your image
         run: |
+          
           ./unpackimg.sh 1.img
           ./repackimg.sh
           cp -v image-new.img ../legacy/out.img
