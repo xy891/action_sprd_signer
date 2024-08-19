@@ -35,25 +35,30 @@ jobs:
           git clone https://github.com/SebaUbuntu/AIK-Linux-mirror aik
           sudo apt install python3 -y
 
-      - name: Debug
-        uses: mxschmitt/action-tmate@v3
-
-      - name: Force stop
-        run: fuckyou
-
       - name: Get image
         run: | 
           wget ${{ github.event.inputs.BOOT_URL }} -O ./aik/boot.img
-          wget ${{ github.event.inputs.VBM_URL }} -O ./aik/vbmeta.img
+          wget ${{ github.event.inputs.VBM_URL }} -O ./avbtool/vbmeta.img
           
       - name: Remove invalid content in your image
         run: |
-          
-          ./unpackimg.sh 1.img
+          ./unpackimg.sh boot.img
           ./repackimg.sh
-          cp -v image-new.img ../legacy/out.img
+          cp -v image-new.img ../avbtool/boot.img
         working-directory: aik
-        
+
+      - name: Sign the image
+        run: |
+          echo "Generate vbmeta sign script..."
+          ./scriptgen vbmeta.img
+          chmod 755 sign_vbmeta.sh
+          echo "Sign vbmeta image..."
+          rm rsa4096_${{ github.event.inputs.CUST }}_pub.bin
+          cp rsa4096_custom_pub.bin rsa4096_${{ github.event.inputs.CUST }}_pub.bin
+          ./sign_vbmeta.sh
+          python vbmeta_pad_*$(cat sign_vbmeta.sh |grep padding |cut -d' ' -f 2)*
+          echo "VBMeta signed!"
+        working-directory: avbtool
 
       - name: Upload to Artifact
         uses: actions/upload-artifact@v4
