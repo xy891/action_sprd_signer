@@ -63,7 +63,7 @@ jobs:
         run: |
           ./unpackimg.sh ${{ github.event.inputs.TARGET }}.img
           ./repackimg.sh
-          cp -v image-new.img ../avbtool/${{ github.event.inputs.TARGET }}.img
+          cp -v *-new.img ../avbtool/${{ github.event.inputs.TARGET }}.img
         working-directory: aik
 
       - name: Sign the image
