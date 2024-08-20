@@ -72,7 +72,7 @@ jobs:
           ./scriptgen vbmeta.img
           chmod 755 sign_vbmeta.sh
           echo "Sign vbmeta image..."
-          rm rsa4096_${{ github.event.inputs.CUST }}_pub.bin
+          rm rsa4096_${{ github.event.inputs.TARGET }}_pub.bin
           cp rsa4096_custom_pub.bin rsa4096_${{ github.event.inputs.TARGET }}_pub.bin
           ./sign_vbmeta.sh
           python vbmeta_pad_${{ github.event.inputs.VER }}_$(cat sign_vbmeta.sh |grep padding |cut -d' ' -f 2).py
