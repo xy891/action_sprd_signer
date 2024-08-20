@@ -1,10 +1,12 @@
 # Action SPRD image sign tool
 
+我是[中国人](README-ZH.md)
+
 Action Workflows to sign image for Unisoc/SPRD device. **WORK IN PROGRESS!**
 
 # Introduce
 
-As I know, two sign method are used by Unisoc. Please choose different signature methods based on your SoC model。
+As I know, two sign method are used by Unisoc. Please choose different signature methods based on your SoC model.
 
 ## AVBTOOL METHOD
 
@@ -27,4 +29,4 @@ For example, **SC9820E/SL8521E** uses this method to sign the image. Most of SC9
 
 I ain't sure, but if your device doesn't have vbmeta pertition or it was empty, you may need to use this method.
 
-If you want to further confirm, you can check the header of your boot image. The boot image uses `DHTB` for it's header instead of `ANDROID!` so that bootimg unpacker can't read it correctly. Actually, `ANDROID!` has been moved backwards by 512 bytes.
+If you want to further confirm, you can check the header of your boot image. The boot image uses `DHTB` for it's header instead of `ANDROID!` so that bootimg unpacker can't read it correctly (but magiskboot seems working normally!). Actually, `ANDROID!` has been moved backwards by 512 bytes.
