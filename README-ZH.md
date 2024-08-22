@@ -11,6 +11,8 @@
 > [!Warning]
 > avbtool签名大法写完了，但是有待测试。来个勇士测测
 
+对应的工作流名：`Sign image (avbtool)`
+
 Avbtool，顾名思义，就是处理avb2.0（或者avb1.0也行？）镜像用的。avbtool签名大法就是用avbtool给你的镜像签名。可以看[这个](https://www.hovatek.com/forum/thread-32664.html)和[这个](https://www.hovatek.com/forum/thread-32674.html)教程来了解签名的原理。
 
 打个比方，**SC9832E/SL8541E**就得用这个方法签名，因为它采用了Android启动时验证2.0（就是avb2.0）来验证镜像。
@@ -20,6 +22,8 @@ Avbtool，顾名思义，就是处理avb2.0（或者avb1.0也行？）镜像用�
 如果想进一步确认的话，可以检查下boot和vbmeta的文件头。boot的文件头跟正常Android没啥区别（前8个字节是`ANDROID!`），但是vbmeta就被爆改了（前四个字节是`DHTB`），avbtool就读不了vbmeta了。实际上，真正的文件头被后移了512字节。
 
 ## sprd_sign签名大法
+
+对应的工作流名：`Sign image (Legacy)`
 
 或者说，额，Legacy签名大法？我觉得“sprd_sign签名大法”更贴切一点。这种方法似乎是用在老SoC上的。展讯有他们自己的签名工具。
 
