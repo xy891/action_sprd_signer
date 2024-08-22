@@ -62,5 +62,5 @@ You should provide `boot\recovery` image you want to sign. Original `vbmeta` ima
 
 - The fourth parameter may be confusing. You can read back the boot/recovery partition of your device **correctly**. The size of the output file is the value of this parameter. **If you operate incorrectly, the size of the output file may change.**
 
-5. **Just drink a tea and wait a while. After a few seconds, the signed image will be uploaded to artifact. You can download it right now and flash into your device!**
+5. **Just drink a tea and wait for a while. After a few seconds, the signed image will be uploaded to artifact. You can download it right now and flash into your device!**
 ![image](.res/8.png)
