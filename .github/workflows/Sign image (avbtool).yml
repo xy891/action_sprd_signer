@@ -90,5 +90,5 @@ jobs:
         with:
           name: Signed image
           path: |
-            'avbtool/vbmeta-sign-custom.img'
-            'avbtool/${{ github.event.inputs.TARGET }}.img'
+            'vbmeta-sign-custom.img'
+            '${{ github.event.inputs.TARGET }}.img'
