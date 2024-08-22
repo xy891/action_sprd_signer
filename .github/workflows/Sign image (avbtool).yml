@@ -82,9 +82,6 @@ jobs:
           echo "${{ github.event.inputs.TARGET }} image signed!"
         working-directory: avbtool
 
-      - name: Test
-        uses: mxschmitt/action-tmate@v3
-
       - name: Upload to Artifact
         uses: actions/upload-artifact@v4
         with:
