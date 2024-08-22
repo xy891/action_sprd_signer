@@ -42,14 +42,14 @@ You should provide `boot\recovery` image you want to sign. Original `vbmeta` ima
 1. **Use `Fork` or `Use this template` to clone this reposity to your personal account**
 ![image](.res/1.png)
 
-2. **Upload your image to somewhere that can get the **DIRECT LINK** to your image. For example, I upload my image to this reposity and used "View raw" to get the link.**
+2. **Upload your image to somewhere that can get the DIRECT LINK to your image. For example, I upload my image to this reposity and used "View raw" to get the link.**
 ![image](.res/2.png)
 ![image](.res/3.png)
 
 3. **Open the `Actions` tab and choose a workflow. Read the [introduce](#introduce) to help you make decision.**
 ![image](.res/4.png)
 
-4. **Press `Run workflow` button, and fill in according to the above 'parameter description'**
+4. **Press `Run workflow` button, and fill in according to the above parameter description**
 ![image](.res/5.png)
 
 - If you choose `Sign image (Legacy)`, there's only one parameter you need to fill in.
