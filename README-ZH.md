@@ -8,8 +8,8 @@
 
 ## AVBTOOL签名大法
 
-> [!Caution]
-> avbtool签名大法没写完，要签的话自己看[这个教程](https://www.hovatek.com/forum/thread-32664.html)和[这个教程](https://www.hovatek.com/forum/thread-32674.html)
+> [!Warning]
+> avbtool签名大法写完了，但是有待测试。来个勇士测测
 
 Avbtool，顾名思义，就是处理avb2.0（或者avb1.0也行？）镜像用的。avbtool签名大法就是用avbtool给你的镜像签名。可以看[这个](https://www.hovatek.com/forum/thread-32664.html)和[这个](https://www.hovatek.com/forum/thread-32674.html)教程来了解签名的原理。
 
