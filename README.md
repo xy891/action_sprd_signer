@@ -49,7 +49,7 @@ You should provide `boot\recovery` image you want to sign. Original `vbmeta` ima
 3. **Open the `Actions` tab and choose a workflow. Read the [introduce](#introduce) to help you make decision.**
 ![image](.res/4.png)
 
-4. **Press `Run workflow` button, and fill in according to the above parameter description**
+4. **Press `Run workflow` button, and fill in according to the above parameter description, then press `Run workflow`**
 ![image](.res/5.png)
 
 - If you choose `Sign image (Legacy)`, there's only one parameter you need to fill in.
