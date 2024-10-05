@@ -23,15 +23,15 @@ Usually, if your device has vbmeta partition and it was not empty, you should us
 
 If you want to further confirm, you can check the header of your boot image and vbmeta image. The boot image uses common header (`ANDROID!` in the first 8 bytes) but vbmeta uses a different header (`DHTB` in the first 4 bytes) that avbtool can not read it correctly. 
 
-## LEGACY METHOD
+## BSP SIGN METHOD
 
 Workflow name: `Sign image (Legacy)`
 
-This method seems to be used only in old SoCs. Unisoc has their own tool to sign the image.
+I called it `Legacy method` before but that isn't correct. This method uses Unisoc's BSP sign tool to sign the image. 
 
-For example, **SC9820E/SL8521E** uses this method to sign the image. Most of SC9820E devices using Android 4.4. But there're still some devices using Android 8.1.
+BSP sign method often uses on uboot, fdl1/2, etc., excluding boot and recovery image. But **SC9820E/SL8521E** uses this method to sign the boot image, including devices using Android 4.4 and Android 8.1. 
 
-I ain't sure, but if your device doesn't have vbmeta pertition or it was empty, you may need to use this method.
+I ain't sure, but if your device doesn't have vbmeta pertition or it was empty, you may need to use this method to sign your boot image.
 
 If you want to further confirm, you can check the header of your boot image. The boot image uses `DHTB` for it's header instead of `ANDROID!` so that bootimg unpacker can't read it correctly (but magiskboot and AIK seems working normally!). Actually, `ANDROID!` has been moved backwards by 512 bytes.
 
