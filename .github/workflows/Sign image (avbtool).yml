@@ -71,7 +71,7 @@ jobs:
           rm -v rsa4096_${{ github.event.inputs.TARGET }}_pub.bin
           cp -v rsa4096_custom_pub.bin rsa4096_${{ github.event.inputs.TARGET }}_pub.bin
           ./sign_vbmeta.sh
-          python vbmeta_pad_${{ github.event.inputs.VER }}_$(cat sign_vbmeta.sh |grep padding |cut -d' ' -f 2).py || if [ $? == 127 ];then echo 'Failed to find out padding script. Does your vbmeta.img have DHTB header? Skipping...'; else echo 'Failed to run padding script, stopping...'&&exit 1; fi
+          python vbmeta_pad_${{ github.event.inputs.VER }}_$(cat sign_vbmeta.sh |grep padding |cut -d' ' -f 2).py || if [ $? == 2 ];then echo 'Failed to find out padding script. Does your vbmeta.img have DHTB header? Skipping...'; else echo 'Failed to run padding script, stopping...'&&exit 1; fi
           echo "VBMeta signed!"
           echo "Signing your ${{ github.event.inputs.TARGET }} image..."
           python avbtool add_hash_footer --image ${{ github.event.inputs.TARGET }}.img --partition_name ${{ github.event.inputs.TARGET }} --partition_size ${{ github.event.inputs.SIZE }} --key rsa4096_vbmeta.pem --algorithm SHA256_RSA4096
