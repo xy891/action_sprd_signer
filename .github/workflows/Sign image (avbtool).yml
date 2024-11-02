@@ -19,10 +19,6 @@ on:
         description: 'Which partition you want to sign?'
         required: true
         default: 'boot'
-        type: choice
-        options:
-        - boot
-        - recovery
       SIZE:
         description: 'What is your boot/recovery PARTITION(not image) size?(size unit is bytes)'
         required: true
