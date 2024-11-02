@@ -85,4 +85,3 @@ jobs:
           path: |
             avbtool/vbmeta-sign-custom.img
             avbtool/${{ github.event.inputs.TARGET }}.img
-echo '
