@@ -21,13 +21,13 @@ Avbtool，顾名思义，就是处理avb2.0（或者avb1.0也行？）镜像用�
 
 如果想进一步确认的话，可以检查下boot和vbmeta的文件头。boot的文件头跟正常Android没啥区别（前8个字节是`ANDROID!`），但是vbmeta就被爆改了（前四个字节是`DHTB`），avbtool就读不了vbmeta了。实际上，真正的文件头被后移了512字节。
 
-## BSP签名工具签名大法
+## BSP签名大法
 
 对应的工作流名：`Sign image (Legacy)`
 
-用展讯自己的BSP签名工具签名镜像。FDL, SPLLoader等等BSP镜像都用这种方法签名，而在某些平台上也用于boot/recovery镜像。
+之前起名为`Legacy Method`实际上并不严谨。这个方法将用展讯自己的BSP签名工具签名镜像。
 
-举个栗子啊，**SC9820E/SL8521E**就用了这种办法签名boot/recovery镜像。可能是因为大多数9820e都用了安卓4.4，所以用不到那么先进的avb2.0，但是还是有些9820e 8.1的啊（
+`FDL1/2, uboot`等等BSP镜像都会用展讯的BSP签名工具签名，但一般不会用来签boot/recovery镜像。只不过，**SC9820E/SL8521E**用了这种方式签名boot/recovery镜像，包括安卓4.4和8.1系统。可能还有其他SoC也会用到，不过我暂时不清楚。
 
 如果我没猜错的话，你这设备没vbmeta分区，或者vbmeta分区是空的，那十有八九得用这方法了。
 
