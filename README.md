@@ -10,7 +10,8 @@ As I know, two sign method are used by Unisoc. Please choose different signature
 
 ## AVBTOOL METHOD
 
-Workflow name: `Sign image (avbtool)`
+> [!NOTE]  
+> Workflow name: `Sign image (avbtool)`
 
 Avbtool is a tool to read AVB2.0 (or avb1.0 support?) signed image and sign an image. Avbtool method means using avbtool to sign the image. Check [here](https://www.hovatek.com/forum/thread-32664.html) and [here](https://www.hovatek.com/forum/thread-32674.html) if you want to know how does it work.
 
@@ -26,7 +27,8 @@ SoCs using this method:
 
 ## BSP SIGN METHOD
 
-Workflow name: `Sign image (Legacy)`
+> [!NOTE]  
+> Workflow name: `Sign image (Legacy)`
 
 I called it `Legacy method` before but that isn't correct. This method uses Unisoc's BSP sign tool to sign the image. 
 
