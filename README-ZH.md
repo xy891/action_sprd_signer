@@ -1,6 +1,6 @@
 # Action SPRD image sign tool
 
-一个给紫光展锐（下文叫它展讯）设备自动签名镜像的Github工作流。**还没写完！！！**
+一个给紫光展锐（下文叫它展讯）设备自动签名镜像的Github工作流。**应该写完了**
 
 # 介绍
 
@@ -8,10 +8,8 @@
 
 ## AVBTOOL签名大法
 
-> [!Warning]
-> avbtool签名大法写完了，但是有待测试。来个勇士测测
-
-对应的工作流名：`Sign image (avbtool)`
+> [!NOTE]  
+> 对应的工作流名：`Sign image (avbtool)`
 
 Avbtool，顾名思义，就是处理avb2.0（或者avb1.0也行？）镜像用的。avbtool签名大法就是用avbtool给你的镜像签名。可以看[这个](https://www.hovatek.com/forum/thread-32664.html)和[这个](https://www.hovatek.com/forum/thread-32674.html)教程来了解签名的原理。
 
@@ -21,9 +19,14 @@ Avbtool，顾名思义，就是处理avb2.0（或者avb1.0也行？）镜像用�
 
 如果想进一步确认的话，可以检查下boot和vbmeta的文件头。boot的文件头跟正常Android没啥区别（前8个字节是`ANDROID!`），但是vbmeta就被爆改了（前四个字节是`DHTB`），avbtool就读不了vbmeta了。实际上，真正的文件头被后移了512字节。
 
+目前已知使用该方法的SoC：
+- SC9832e/SL8541e
+- 有待补充...
+
 ## BSP签名大法
 
-对应的工作流名：`Sign image (Legacy)`
+> [!NOTE]  
+> 对应的工作流名：`Sign image (Legacy)`
 
 之前起名为`Legacy Method`实际上并不严谨。这个方法将用展讯自己的BSP签名工具签名镜像。
 
@@ -33,7 +36,12 @@ Avbtool，顾名思义，就是处理avb2.0（或者avb1.0也行？）镜像用�
 
 想进一步确认的话，可以检查下boot的文件头。boot的文件头跟上文vbmeta一样被爆改成`DHTB`了，那些boot解包工具找不到`ANDROID!`文件头就炸了（但magiskboot和aik似乎正常）。实际上，`ANDROID!`也被后移了512字节。vbmeta就没必要看了吧，都没有了看个几把（
 
-# 怎么用
+目前已知使用该方法的SoC：
+- SC9820e/SL8521e
+- W377e
+- 有待补充...
+
+# 使用方法
 
 你需要提供你想要签名的 `boot\recovery` 镜像。如果你用avbtool大法，还需要设备里提出来的原版 `vbmeta` 。**VBMETA镜像里的DHTB头不要删掉！！！**
 
